@@ -1,13 +1,13 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import Chat from "./pages/chat/Chat";
-import SignIn from "./pages/Sign-In/SignIn";
+import LogIn from "./pages/auth/LogIn.jsx";
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Chat />} />
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="" element={<LogIn />} />
       </Routes>
     </div>
   );
