@@ -1,0 +1,19 @@
+.header__text {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  margin-right: 10px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+
+  .item {
+    &:not(:last-child) {
+      margin: 0 10px 0 0;
+    }
+  }
+}
