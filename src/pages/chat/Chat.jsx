@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-import { AppShell, Text, useMantineTheme } from "@mantine/core";
+import React, { useState, useRef } from "react";
+import { AppShell, useMantineTheme } from "@mantine/core";
 import HeaderChat from "../../components/chat/HeaderChat";
 import NavbarChat from "../../components/chat/NavbarChat";
 import "./chat.scss";
+import Board from "../../components/chat/messages/Board";
+import ChatLogic from "../../components/chat/ChatLogic";
+import Form from "../../components/chat/messages/Form";
 
 export default function Chat() {
+  const scroll = useRef(null);
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   return (
@@ -21,7 +25,8 @@ export default function Chat() {
       navbar={<NavbarChat opened={opened} />}
       header={<HeaderChat opened={opened} setOpened={setOpened} />}
     >
-      <Text>Resize app to see responsive navbar in action</Text>
+      <Board scroll={scroll} />
+      <Form scroll={scroll} />
     </AppShell>
   );
 }
