@@ -7,14 +7,13 @@ import { Navigate } from "react-router-dom";
 export default function NavbarChat({ opened }) {
   console.log(auth.currentUser);
   const [user] = useAuthState(auth);
-  console.log(user);
   return (
-    <div>
+    <div className="navbar">
       <Navbar
         p="md"
         hiddenBreakpoint="sm"
         hidden={!opened}
-        width={{ sm: 200, lg: 300 }}
+        width={{ sm: 300, lg: 400 }}
       >
         <div className="horizontal-line"></div>
         <div className="user">
