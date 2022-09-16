@@ -1,33 +1,18 @@
 import React from "react";
-import {
-  Header,
-  MediaQuery,
-  Burger,
-  Text,
-  useMantineTheme,
-} from "@mantine/core";
 import { IconBrandBadoo } from "@tabler/icons";
-export default function HeaderChat({ opened, setOpened }) {
-  const theme = useMantineTheme();
-  return (
-    <Header height={70} p="md">
-      <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-        <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-          <Burger
-            opened={opened}
-            onClick={() => setOpened((o) => !o)}
-            size="sm"
-            color={theme.colors.gray[6]}
-            mr="xl"
-          />
-        </MediaQuery>
+import { Burger } from "@mantine/core";
+export default function HeaderChat({ setOpened }) {
+  const handleNavbar = () => {
+    setOpened((prev) => !prev);
+  };
 
-        <Text size="md" weight={700} color="blue" className="header__text">
-          {" "}
-          <IconBrandBadoo className="header__logo" />
-          Chat App
-        </Text>
+  return (
+    <header className="header">
+      <div className="logo">
+        <IconBrandBadoo color="blue" className="logo__img" size={30} />
+        <div className="logo__text">Chat-App</div>
       </div>
-    </Header>
+      <Burger className="burger" onClick={handleNavbar} />
+    </header>
   );
 }
