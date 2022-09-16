@@ -1,12 +1,13 @@
-import React from "react";
-import Board from "./messages/Board";
-import Form from "./messages/Form";
+import React, { useRef } from "react";
+import Board from "../messages/Board";
+import Form from "../messages/Form";
 
 export default function ChatLogic() {
+  const chatScroll = useRef(null);
   return (
-    <div>
-      <Board />
-      <Form />
-    </div>
+    <main>
+      <Board chatScroll={chatScroll} />
+      <Form chatScroll={chatScroll} />
+    </main>
   );
 }

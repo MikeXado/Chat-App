@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db } from "../../firebase";
 import Messages from "./Messages";
-export default function Board({ scroll }) {
+export default function Board({ scroll, chatScroll }) {
   const [messages, setMessages] = useState([]);
-  console.log(messages);
 
   useEffect(() => {
     const q = query(collection(db, "messages"), orderBy("timeStamp"));
@@ -14,17 +13,21 @@ export default function Board({ scroll }) {
         messages.push({ ...message.data(), id: message.id })
       );
       setMessages(messages);
-      document.scrollTo = scroll;
     });
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    chatScroll.current.scrollTop = chatScroll.current.scrollHeight;
+  }, [messages, chatScroll]);
+
   return (
-    <div className="board">
-      {messages.map((message) => {
-        return <Messages key={message.id} message={message} />;
-      })}
-      <span ref={scroll}></span>
+    <div className="board" ref={chatScroll}>
+      {messages &&
+        messages.map((message) => {
+          return <Messages key={message.id} message={message} />;
+        })}
+      <span></span>
     </div>
   );
 }
