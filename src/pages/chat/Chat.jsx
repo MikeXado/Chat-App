@@ -9,7 +9,7 @@ export default function Chat() {
   return (
     <div className="chat">
       <HeaderChat setOpened={setOpened} />
-      <NavbarChat opened={opened} />
+      <NavbarChat opened={opened} setOpened={setOpened} />
       <ChatLogic />
     </div>
   );

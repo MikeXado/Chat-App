@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { doc, onSnapshot, orderBy } from "firebase/firestore";
 import { db } from "../../firebase";
 import Messages from "./Messages";
-export default function Board({ scroll, chatScroll }) {
+import { useSelector } from "react-redux";
+export default function Board({ chatScroll }) {
   const [messages, setMessages] = useState([]);
-
+  const currentClickedUser = useSelector((u) => u.chat.clickedUserUid);
   useEffect(() => {
-    const q = query(collection(db, "messages"), orderBy("timeStamp"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let messages = [];
-      querySnapshot.forEach((message) =>
-        messages.push({ ...message.data(), id: message.id })
-      );
-      setMessages(messages);
-    });
+    if (currentClickedUser === "") return;
+    const unsubscribe = onSnapshot(
+      doc(db, "chats", currentClickedUser),
+      orderBy("timeStamp"),
+      (doc) => {
+        doc.exists() && setMessages(doc.data());
+      }
+    );
     return () => unsubscribe();
-  }, []);
+  }, [currentClickedUser]);
 
   useEffect(() => {
     chatScroll.current.scrollTop = chatScroll.current.scrollHeight;
@@ -23,10 +24,14 @@ export default function Board({ scroll, chatScroll }) {
 
   return (
     <div className="board" ref={chatScroll}>
-      {messages &&
-        messages.map((message) => {
+      {messages.messages?.length > 0 ? (
+        messages?.messages.map((message) => {
           return <Messages key={message.id} message={message} />;
-        })}
+        })
+      ) : (
+        <div className="no-messages-yet">No Messages Yet</div>
+      )}
+
       <span></span>
     </div>
   );
