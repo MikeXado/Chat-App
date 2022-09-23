@@ -30,6 +30,7 @@ header {
   border-bottom: 1px solid #cccccc;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   .logo {
     display: flex;
     align-items: center;
@@ -46,6 +47,12 @@ header {
 
     @media (max-width: 767px) {
       display: block;
+    }
+  }
+
+  .header {
+    &__dark-switcher {
+      margin-right: 30px;
     }
   }
 }
@@ -88,22 +95,6 @@ main {
     transition: transform 0.6s ease-in-out;
     border: none;
   }
-  @media (max-height: 700px) {
-    padding-bottom: 15px;
-  }
-  @media (max-height: 626px) {
-    padding-bottom: 25px;
-  }
-  @media (max-height: 556px) {
-    padding-bottom: 40px;
-  }
-
-  @media (max-height: 464px) {
-    padding-bottom: 55px;
-  }
-  @media (max-height: 378px) {
-    padding-bottom: 75px;
-  }
 
   .nav-content {
     display: flex;
@@ -135,6 +126,8 @@ main {
     align-items: flex-end;
     justify-content: center;
     margin-bottom: 65px;
+    padding-bottom: 15px;
+
     .user {
       display: flex;
       align-items: center;
@@ -289,4 +282,23 @@ em-emoji-picker {
   font-size: 30px;
   opacity: 0.8;
   font-weight: 700;
+}
+
+//DarkMode
+
+.elements-dark {
+  background-color: #212121;
+  color: #fff;
+  border: 0;
+
+  textarea {
+    background-color: #212121;
+    color: #fff;
+    border: 0;
+  }
+}
+
+.board-dark {
+  background-color: #292929;
+  color: #fff;
 }

@@ -6,8 +6,9 @@ import NonSelectedChat from "../messages/NonSelectedChat";
 export default function ChatLogic() {
   const chatScroll = useRef(null);
   const clickedUserUid = useSelector((u) => u.currentClickedUser);
+  const darkModeState = useSelector((state) => state.darkMode);
   return (
-    <main>
+    <main className={darkModeState ? " board-dark" : ""}>
       {clickedUserUid !== "" ? (
         <>
           <Board chatScroll={chatScroll} />
