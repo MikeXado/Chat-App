@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GoogleButton from "react-google-button";
 import { Navigate } from "react-router-dom";
-import "./auth.scss";
+
 import { auth, db } from "../../firebase";
 import { serverTimestamp, setDoc, doc, getDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";

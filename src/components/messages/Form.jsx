@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Textarea } from "@mantine/core";
 import { db } from "../../firebase";
-import {
-  serverTimestamp,
-  doc,
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-  addDoc,
-  updateDoc,
-  arrayUnion,
-} from "firebase/firestore";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { auth } from "../../firebase";
 import Picker from "@emoji-mart/react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -20,12 +10,10 @@ import { useSelector } from "react-redux";
 import { v4 } from "uuid";
 export default function Form({ chatScroll }) {
   const [messagesState, setMessagesState] = useState("");
-  const [messagesArray, setMessagesArray] = useState([]);
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [data, setData] = useState(null);
   const [user] = useAuthState(auth);
-  const clickedUserUid = useSelector((user) => user.chat.clickedUserUid);
-  const [chats, setChats] = useState([]);
+  const clickedUserUid = useSelector((user) => user.currentClickedUser);
   const getInput = (e) => {
     let target = e.target.value;
     setMessagesState(target);
@@ -36,18 +24,6 @@ export default function Form({ chatScroll }) {
       setData(response.json());
     });
   });
-
-  useEffect(() => {
-    const q = query(collection(db, "chats"), orderBy("timeStamp"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let chats = [];
-      querySnapshot.forEach((chat) => {
-        chats.push({ ...chat.data(), id: chat.id });
-      });
-      setChats(chats);
-    });
-    return () => unsubscribe();
-  }, []);
 
   const addMessages = async () => {
     if (messagesState !== "" && clickedUserUid !== "") {

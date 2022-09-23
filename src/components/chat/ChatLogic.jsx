@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import NonSelectedChat from "../messages/NonSelectedChat";
 export default function ChatLogic() {
   const chatScroll = useRef(null);
-  const clickedUserUid = useSelector((u) => u.chat.clickedUserUid);
+  const clickedUserUid = useSelector((u) => u.currentClickedUser);
   return (
     <main>
       {clickedUserUid !== "" ? (
