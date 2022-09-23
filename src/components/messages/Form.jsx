@@ -14,6 +14,7 @@ export default function Form({ chatScroll }) {
   const [data, setData] = useState(null);
   const [user] = useAuthState(auth);
   const clickedUserUid = useSelector((user) => user.currentClickedUser);
+  const darkModeState = useSelector((state) => state.darkMode);
   const getInput = (e) => {
     let target = e.target.value;
     setMessagesState(target);
@@ -58,8 +59,11 @@ export default function Form({ chatScroll }) {
   return (
     <div className="messages">
       <Textarea
-        className="messages__input"
+        className={"messages__input" + (darkModeState ? " elements-dark" : "")}
         placeholder="Message here..."
+        style={{
+          ...(darkModeState ? { backgroundColor: "#212121 !important" } : {}),
+        }}
         autosize
         value={messagesState}
         onChange={getInput}

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentClickedUser: "",
+  darkMode: false,
 };
 
 const clickedUserSlice = createSlice({
@@ -11,8 +12,11 @@ const clickedUserSlice = createSlice({
     getClickedUserUid(state, action) {
       state.currentClickedUser = action.payload.uid;
     },
+    changeMode(state, action) {
+      state.darkMode = !state.darkMode;
+    },
   },
 });
 
-export const { getClickedUserUid } = clickedUserSlice.actions;
+export const { getClickedUserUid, changeMode } = clickedUserSlice.actions;
 export default clickedUserSlice.reducer;
