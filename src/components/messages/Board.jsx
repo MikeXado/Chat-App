@@ -5,7 +5,7 @@ import Messages from "./Messages";
 import { useSelector } from "react-redux";
 export default function Board({ chatScroll }) {
   const [messages, setMessages] = useState([]);
-  const currentClickedUser = useSelector((u) => u.chat.clickedUserUid);
+  const currentClickedUser = useSelector((u) => u.currentClickedUser);
   useEffect(() => {
     if (currentClickedUser === "") return;
     const unsubscribe = onSnapshot(

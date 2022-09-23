@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import { auth } from "../../../firebase";
 import { useDispatch } from "react-redux";
-import { getClickedUserUid } from "../../../redux/chat/chat-actions";
+import { getClickedUserUid } from "../../../redux/slices/chatSlice";
 export default function RegisteredUsers({ setOpened }) {
   const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ export default function RegisteredUsers({ setOpened }) {
       await setDoc(doc(db, "chats", combinedUid), { messages: [] });
     }
 
-    dispatch(getClickedUserUid(combinedUid));
+    dispatch(getClickedUserUid({ uid: combinedUid }));
   };
 
   const handleNavbarOpen = () => {
