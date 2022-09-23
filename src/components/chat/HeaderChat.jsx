@@ -24,7 +24,11 @@ export default function HeaderChat({ setOpened }) {
           />
           <div className="logo__text">Chat-App</div>
         </div>
-        <Burger className="burger" onClick={handleNavbar} />
+        <Burger
+          className="burger"
+          color={darkModeState ? "white" : ""}
+          onClick={handleNavbar}
+        />
       </div>
       <div className="header__dark-switcher">
         <IconBrightnessDown

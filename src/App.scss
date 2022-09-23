@@ -54,6 +54,11 @@ header {
     &__dark-switcher {
       margin-right: 30px;
     }
+
+    &__logo-burger {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
