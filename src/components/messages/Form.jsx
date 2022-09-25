@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button, Textarea } from "@mantine/core";
 import { db } from "../../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { auth } from "../../firebase";
@@ -58,17 +57,16 @@ export default function Form({ chatScroll }) {
 
   return (
     <div className="messages">
-      <Textarea
+      <textarea
         className={"messages__input" + (darkModeState ? " elements-dark" : "")}
         placeholder="Message here..."
         style={{
           ...(darkModeState ? { backgroundColor: "#212121 !important" } : {}),
         }}
-        autosize
         value={messagesState}
         onChange={getInput}
-        minRows={1.3}
-        maxRows={10}
+        minrows={1.3}
+        maxrows={10}
         maxLength={800}
       />
 
@@ -85,9 +83,9 @@ export default function Form({ chatScroll }) {
           onEmojiSelect={handleEmojies}
         />
       </div>
-      <Button onClick={addMessages} size="lg">
+      <button className="form-button" onClick={addMessages}>
         Send
-      </Button>
+      </button>
     </div>
   );
 }

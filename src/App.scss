@@ -19,10 +19,6 @@
   }
 }
 
-.chat {
-  padding-bottom: 100px;
-}
-
 header {
   width: 100%;
   padding: 15px 0 15px 0;
@@ -67,21 +63,10 @@ main {
   padding: 15px 15px 0 15px;
   display: flex;
   flex-direction: column;
-  height: 92vh;
-  @media (max-height: 656px) {
-    padding-bottom: 15px;
-  }
-  @media (max-height: 494px) {
-    padding-bottom: 25px;
-  }
-  @media (max-height: 371px) {
-    padding-bottom: 35px;
-  }
-  @media (max-width: 991px) {
-    margin-left: 300px;
-  }
+  height: 100vh;
+
   @media (max-width: 767px) {
-    margin-left: 0;
+    margin: 0;
   }
 }
 
@@ -130,7 +115,7 @@ main {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    margin-bottom: 65px;
+    margin-bottom: 80px;
     padding-bottom: 15px;
 
     .user {
@@ -153,12 +138,24 @@ main {
 }
 
 .messages {
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 10px;
   position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 85px;
+
   &__input {
     width: 100%;
+    height: 60px;
+    padding: 8px 0 0 8px;
+    border: 1px solid #cccc;
+  }
+
+  .form-button {
+    background-color: #1877f2;
+    padding: 20px 30px 20px 30px;
+    color: #fff;
+    font-weight: 700;
   }
 }
 
@@ -272,6 +269,10 @@ em-emoji-picker {
   width: 100%;
   font-size: 50px;
   font-weight: 700;
+
+  @media (max-width: 991px) {
+    font-size: 30px;
+  }
 
   @media (max-width: 445px) {
     font-size: 30px;
