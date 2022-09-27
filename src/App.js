@@ -1,7 +1,8 @@
 import "./App.scss";
+import { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import Chat from "./pages/chat/Chat";
-import LogIn from "./pages/auth/LogIn.jsx";
+import LogIn from "./pages/auth/LogIn";
+const Chat = lazy(() => import("./pages/chat/Chat"));
 function App() {
   return (
     <div className="App">

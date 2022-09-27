@@ -1,5 +1,4 @@
 import React from "react";
-import { Avatar } from "@mantine/core";
 import { auth } from "../../firebase";
 export default function Messages({ message }) {
   const userId = auth.currentUser.uid;
@@ -11,7 +10,12 @@ export default function Messages({ message }) {
         (userId === message.uid ? " send-message" : " recieved-message")
       }
     >
-      <Avatar src={message.icon} className="item" />
+      <img
+        className="avatar item"
+        src={message.icon}
+        alt="avatar"
+        referrerPolicy="no-referrer"
+      />
       <div className="board-message__text item">
         <p className="item__name">{message.dispalyName}</p>
         <p className="item__text">{message.message}</p>

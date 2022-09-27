@@ -3,7 +3,6 @@ import { db } from "../../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { auth } from "../../firebase";
 import Picker from "@emoji-mart/react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { IconMoodSmile } from "@tabler/icons";
 import { useSelector } from "react-redux";
 import { v4 } from "uuid";
@@ -11,7 +10,7 @@ export default function Form({ chatScroll }) {
   const [messagesState, setMessagesState] = useState("");
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [data, setData] = useState(null);
-  const [user] = useAuthState(auth);
+  const user = auth.currentUser;
   const clickedUserUid = useSelector((user) => user.currentClickedUser);
   const darkModeState = useSelector((state) => state.darkMode);
   const getInput = (e) => {
@@ -28,18 +27,18 @@ export default function Form({ chatScroll }) {
   const addMessages = async () => {
     if (messagesState !== "" && clickedUserUid !== "") {
       const timeStamp = new Date();
+      setMessagesState("");
+      setEmojiOpen(false);
       await updateDoc(doc(db, "chats", clickedUserUid), {
         messages: arrayUnion({
           id: v4(),
           message: messagesState,
-          dispalyName: user.displayName,
-          icon: user.photoURL,
-          uid: user.uid,
+          dispalyName: user?.displayName,
+          icon: user?.photoURL,
+          uid: user?.uid,
           timeStamp: timeStamp,
         }),
       });
-      setMessagesState("");
-      setEmojiOpen(false);
       chatScroll.current.scrollTop = chatScroll.current.scrollHeight;
     }
   };

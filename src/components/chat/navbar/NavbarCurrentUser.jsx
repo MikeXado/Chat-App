@@ -1,13 +1,17 @@
 import React from "react";
-import { Avatar } from "@mantine/core";
 import UserMenuDropDown from "./UserMenuDropDown";
-export default function NavbarCurrentUser({ user }) {
+import { auth } from "../../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+export default function NavbarCurrentUser() {
+  const [user] = useAuthState(auth);
   return (
     <div className="navbar-user">
       <div className="user">
-        <Avatar
-          className="navbar-user__avatar item"
+        <img
+          className="navbar-user__avatar avatar item"
           src={user && user.photoURL}
+          alt="avatar"
+          referrerPolicy="no-referrer"
         />
         <div className="navbar-user__info info-user item">
           <div className="info-user__name">{user && user.displayName}</div>

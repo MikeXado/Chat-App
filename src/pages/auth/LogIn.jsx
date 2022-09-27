@@ -4,9 +4,8 @@ import { Navigate } from "react-router-dom";
 
 import { auth, db } from "../../firebase";
 import { serverTimestamp, setDoc, doc, getDoc } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
+import { useAuthState } from "react-firebase-hooks/auth";
 export default function LogIn() {
   const addUsers = async (user) => {
     const sameUserCheck = await getDoc(doc(db, "users", user.uid));

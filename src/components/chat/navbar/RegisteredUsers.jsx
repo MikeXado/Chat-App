@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Avatar } from "@mantine/core";
 import { db } from "../../../firebase";
 import {
   collection,
@@ -12,8 +11,11 @@ import {
 } from "firebase/firestore";
 import { auth } from "../../../firebase";
 import { useDispatch } from "react-redux";
-import { getClickedUserUid } from "../../../redux/slices/chatSlice";
-export default function RegisteredUsers({ setOpened }) {
+import {
+  getClickedUserUid,
+  changeOpened,
+} from "../../../redux/slices/chatSlice";
+export default function RegisteredUsers() {
   const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
 
@@ -34,17 +36,11 @@ export default function RegisteredUsers({ setOpened }) {
       auth.currentUser?.uid > user.uid
         ? auth.currentUser?.uid + user.uid
         : user.uid + auth.currentUser?.uid;
-
+    dispatch(getClickedUserUid({ uid: combinedUid }));
     const res = await getDoc(doc(db, "chats", combinedUid));
     if (!res.exists()) {
       await setDoc(doc(db, "chats", combinedUid), { messages: [] });
     }
-
-    dispatch(getClickedUserUid({ uid: combinedUid }));
-  };
-
-  const handleNavbarOpen = () => {
-    setOpened(false);
   };
 
   return (
@@ -56,10 +52,15 @@ export default function RegisteredUsers({ setOpened }) {
             className="registered-user"
             onClick={() => {
               addChat(user);
-              handleNavbarOpen();
+              dispatch(changeOpened());
             }}
           >
-            <Avatar src={user.icon} alt="avatar" />
+            <img
+              className="avatar"
+              src={user?.icon}
+              alt="avatar"
+              referrerPolicy="no-referrer"
+            />
             <div className="registered-user__info">
               <div className="registered-user__name">{user.displayName}</div>
               <div className="registered-user__email">{user.email}</div>

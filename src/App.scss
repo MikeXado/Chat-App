@@ -19,6 +19,12 @@
   }
 }
 
+.avatar {
+  width: 40px;
+  border-radius: 5px;
+  height: 40px;
+}
+
 header {
   width: 100%;
   padding: 15px 0 15px 0;
@@ -40,9 +46,54 @@ header {
   .burger {
     display: none;
     margin-left: 20px;
+    width: 25px;
+    background-color: #292929;
+    height: 2px;
+    position: relative;
 
     @media (max-width: 767px) {
       display: block;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      width: 25px;
+      background-color: #292929;
+      height: 2px;
+      position: absolute;
+    }
+
+    &::before {
+      top: -7px;
+    }
+
+    &::after {
+      top: 7px;
+    }
+  }
+
+  .dark-mode__burger {
+    background-color: #fff;
+
+    &::after,
+    &::before {
+      background-color: #fff;
+    }
+  }
+
+  .active-burger {
+    background: none;
+    &::before {
+      transform: rotate(45deg);
+      top: 0;
+      transition: 0.3s transform ease-in-out;
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+      top: 0;
+      transition: 0.3s transform ease-in-out;
     }
   }
 
@@ -64,7 +115,9 @@ main {
   display: flex;
   flex-direction: column;
   height: 100vh;
-
+  @media (max-width: 991px) {
+    margin-left: 300px;
+  }
   @media (max-width: 767px) {
     margin: 0;
   }
@@ -101,6 +154,7 @@ main {
     .registered-user {
       display: flex;
       align-items: center;
+      cursor: pointer;
       &:not(:last-child) {
         margin: 0 0 20px 0;
       }
@@ -130,6 +184,9 @@ main {
 }
 
 @media (max-width: 767px) {
+  .navbar {
+    width: 100%;
+  }
   .navbar-open {
     width: 100%;
     transform: translateX(0);
@@ -137,11 +194,45 @@ main {
   }
 }
 
+.popover {
+  position: relative;
+  &__dropdown {
+    position: absolute;
+    top: -50px;
+    left: -40px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 100px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    display: none;
+    @media (max-width: 365px) {
+      left: -50px;
+    }
+    @media (max-width: 333px) {
+      left: -60px;
+    }
+
+    .btn {
+      background-color: rgb(223, 70, 70);
+      color: #fff;
+      padding: 5px 10px 5px 10px;
+      border-radius: 10px;
+    }
+  }
+
+  .active-dropdown {
+    display: flex;
+  }
+}
+
 .messages {
   position: relative;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  width: 100%;
+  margin-top: 15px;
   margin-bottom: 85px;
 
   &__input {
@@ -152,7 +243,7 @@ main {
   }
 
   .form-button {
-    background-color: #1877f2;
+    background-color: #0f54ae;
     padding: 20px 30px 20px 30px;
     color: #fff;
     font-weight: 700;
@@ -186,7 +277,7 @@ main {
     }
     &__text {
       margin-top: 5px;
-      background-color: #1877f2;
+      background-color: #0f54ae;
       padding: 10px;
       color: #fff;
       border-radius: 30px;
@@ -204,6 +295,7 @@ main {
 .send-message {
   display: flex;
   margin: 0 0 0 auto;
+  align-items: center;
   flex-direction: row-reverse;
   &:not(:last-child) {
     margin: 50px 0 20px auto;
@@ -225,6 +317,8 @@ main {
 .recieved-message {
   display: flex;
   margin-top: 30px;
+
+  align-items: center;
 
   .board-message__text {
     margin-left: 10px;

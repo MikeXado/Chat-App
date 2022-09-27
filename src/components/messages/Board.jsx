@@ -16,6 +16,7 @@ export default function Board({ chatScroll }) {
         doc.exists() && setMessages(doc.data());
       }
     );
+
     return () => unsubscribe();
   }, [currentClickedUser]);
 
@@ -32,8 +33,6 @@ export default function Board({ chatScroll }) {
       ) : (
         <div className="no-messages-yet">No Messages Yet</div>
       )}
-
-      <span></span>
     </div>
   );
 }

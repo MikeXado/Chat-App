@@ -1,13 +1,14 @@
 import React from "react";
 import { auth } from "../../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate } from "react-router-dom";
 import NavbarCurrentUser from "./navbar/NavbarCurrentUser";
 import RegisteredUsers from "./navbar/RegisteredUsers";
 import { useSelector } from "react-redux";
-export default function NavbarChat({ opened, setOpened }) {
-  const [user] = useAuthState(auth);
+import { useAuthState } from "react-firebase-hooks/auth";
+export default function NavbarChat() {
+  const [currentUser] = useAuthState(auth);
   const darkModeState = useSelector((state) => state.darkMode);
+  const opened = useSelector((state) => state.opened);
   return (
     <div
       className={
@@ -17,10 +18,10 @@ export default function NavbarChat({ opened, setOpened }) {
       }
     >
       <div className="nav-content">
-        <RegisteredUsers setOpened={setOpened} />
-        <NavbarCurrentUser user={user} />
+        <RegisteredUsers />
+        <NavbarCurrentUser />
       </div>
-      {!user && <Navigate replace to="/" />}
+      {!currentUser && <Navigate replace to="/" />}
     </div>
   );
 }
