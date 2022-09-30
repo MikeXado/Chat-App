@@ -4,7 +4,6 @@
   "homepage": "htttps://MikeXado.github.io/Chat-App",
   "private": true,
   "dependencies": {
-    "@emoji-mart/react": "^1.0.1",
     "@reduxjs/toolkit": "^1.8.5",
     "@tabler/icons": "^1.95.1",
     "@testing-library/jest-dom": "^5.16.5",

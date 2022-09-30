@@ -1,10 +1,14 @@
+.App {
+  overflow: auto;
+}
+
 .auth-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
 
   &__text {
     font-size: 40px;
@@ -114,7 +118,7 @@ main {
   padding: 15px 15px 0 15px;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 95vh;
   @media (max-width: 991px) {
     margin-left: 300px;
   }
@@ -142,7 +146,8 @@ main {
   .nav-content {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    margin-top: 30px;
+    height: 95vh;
   }
   .registered-users {
     display: flex;
@@ -168,10 +173,9 @@ main {
   .navbar-user {
     display: flex;
     align-items: flex-end;
-    justify-content: center;
     margin-bottom: 80px;
     padding-bottom: 15px;
-
+    padding-left: 15px;
     .user {
       display: flex;
       align-items: center;
@@ -230,6 +234,7 @@ main {
 
 .messages {
   position: relative;
+  top: 30px;
   display: flex;
   width: 100%;
   margin-top: 15px;
@@ -298,7 +303,7 @@ main {
   align-items: center;
   flex-direction: row-reverse;
   &:not(:last-child) {
-    margin: 50px 0 20px auto;
+    margin: 0px 0 30px auto;
   }
 
   .board-message__text {
@@ -316,8 +321,9 @@ main {
 
 .recieved-message {
   display: flex;
-  margin-top: 30px;
-
+  &:not(:last-child) {
+    margin: 0px 0 30px 0;
+  }
   align-items: center;
 
   .board-message__text {
@@ -333,43 +339,22 @@ main {
   }
 }
 
-.emojie-picker {
-  position: absolute;
-  right: 100px;
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-em-emoji-picker {
-  position: absolute;
-  right: 0;
-  top: -368px;
-  height: 40vh;
-  max-width: 100%;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-}
-
-.hidden {
-  display: none;
-}
-
 .not-selected-chat {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   font-size: 50px;
   font-weight: 700;
 
   @media (max-width: 991px) {
     font-size: 30px;
+    height: 70vh;
   }
 
   @media (max-width: 445px) {
-    font-size: 30px;
+    font-size: 25px;
   }
 }
 
@@ -378,10 +363,14 @@ em-emoji-picker {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   font-size: 30px;
   opacity: 0.8;
   font-weight: 700;
+
+  @media (max-width: 445px) {
+    font-size: 25px;
+  }
 }
 
 //DarkMode
