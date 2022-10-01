@@ -17,10 +17,9 @@ export default function NavbarChat() {
         (darkModeState ? " elements-dark" : "")
       }
     >
-      <div className="nav-content">
-        <RegisteredUsers />
-        <NavbarCurrentUser />
-      </div>
+      <RegisteredUsers />
+      <NavbarCurrentUser />
+
       {!currentUser && <Navigate replace to="/" />}
     </div>
   );
